@@ -1,10 +1,10 @@
 import React from 'react'
 import { useTheme } from './theme/styleProvider';
-import {NavBar} from './components/ui'
+import {NavBar} from './components/atom'
 
 type NavBarProps = { title: string }
 const NavBarComponent: React.FC<NavBarProps> = ({ title }) => {
-  const toggleTheme = useTheme()
+  const [,toggleTheme] = useTheme()
   return (
     <NavBar>
       <NavBar.Brand>{title}</NavBar.Brand>

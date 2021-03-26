@@ -1,23 +1,24 @@
 import React from 'react'
 import styled from 'styled-components'
 import {device} from '../theme/styleProvider'
+import 'leaflet/dist/leaflet.css';
+import {MapContainer, TileLayer} from 'react-leaflet';
+import mapData from '../config'
 
-const MapWapper = styled.section`
+const MapWapper = styled(MapContainer)`
   display:none; 
   @media only screen and ${device.sm}{
     display: flex;
     flex: 0 0 50%;
-    background: ${({ theme }) => theme.text};
-    color: ${({ theme }) => theme.body};
   }
 `
 
-function MapContainer():React.ReactElement {
-  return (
-    <MapWapper>
-      x
+function Map():React.ReactElement {
+  return (    
+    <MapWapper center={[mapData.latitude,mapData.longitude]} zoom={mapData.zoom}>
+      <TileLayer url={mapData.mapUrl} attribution={mapData.mapAtr} />
     </MapWapper>
-  )
+  );
 }
 
-export default MapContainer
+export default Map

@@ -90,7 +90,7 @@ export function StyleProvider({ children }) {
   }
 
   return (
-    <ThemeContext.Provider value={toggleTheme}>
+    <ThemeContext.Provider value={[theme, toggleTheme]}>
       <ThemeProvider theme={themes[theme]}>
         <>
           <GlobalStyles />
