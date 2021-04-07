@@ -1,10 +1,11 @@
-import * as React from 'react';
+import {ReactElement, useState} from 'react';
 import ReactMapGL from 'react-map-gl';
 import styled from 'styled-components'
-import { device, useTheme } from '../theme/styleProvider'
+import { useTheme } from '../theme/styleProvider'
 import 'mapbox-gl/dist/mapbox-gl.css';
-import mapData from '../config'
+import {mapData, device} from '../config'
 import Connections from './Connections'
+import {MapStyle, viewportObj} from '../global'
 
 const MapWapper = styled.section`
   display:none; 
@@ -14,23 +15,26 @@ const MapWapper = styled.section`
   }
 `
 
-function Map():React.ReactElement {
-  const [theme] = useTheme()
-  const [viewport, setViewport] = React.useState({
+function Map():ReactElement {
+  const {theme} = useTheme()
+  const initialViewport: viewportObj = {
     latitude: mapData.latitude,
     longitude: mapData.longitude,
     zoom: mapData.zoom,
-  });
-
+  }
+  const [viewport, setViewport] = useState(initialViewport);
+  // const url = window.location.origin;
+  
   return (
     <MapWapper>
       <ReactMapGL
         {...viewport}
         width="100%"
         height="100%"
-        onViewportChange={(viewport) => setViewport(viewport)}
+        onViewportChange={(viewport:viewportObj):void => setViewport(viewport)}
         mapboxApiAccessToken={mapData.accessToken}
-        mapStyle={mapData.mapStyle[theme]}
+        mapStyle={mapData.mapStyle[theme as keyof MapStyle]}
+        // mapboxApiUrl={`${url}/api`}
       >
         <Connections viewport={viewport}/>
       </ReactMapGL>

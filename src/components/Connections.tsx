@@ -1,7 +1,9 @@
-import React from 'react'
-import DeckGL, { ArcLayer } from 'deck.gl';
+import { FC } from 'react'
+import DeckGL, { ArcLayer, Position, RGBAColor } from 'deck.gl';
 import arcs from '../data/arcs.json';
-export default function Connections({viewport}) {
+import {ConnectionProps} from '../global'
+
+const Connections:FC<ConnectionProps> = ({viewport}) => {
   return (
     <DeckGL
       initialViewState={viewport}
@@ -9,13 +11,15 @@ export default function Connections({viewport}) {
         new ArcLayer({
           id: 'flight-arcs',
           data: arcs,
-          getSourcePosition: (d) => d.source,
-          getTargetPosition: (d) => d.target,
-          getSourceColor: () => [255, 0, 0, 120],
-          getTargetColor: () => [0, 255, 0, 120],
-          getStrokeWidth: () => 2,
+          getSourcePosition: (d:any):Position => d.source,
+          getTargetPosition: (d:any):Position => d.target,
+          getSourceColor: ():RGBAColor => [255, 0, 0, 120],
+          getTargetColor: ():RGBAColor => [0, 255, 0, 120],
+          getStrokeWidth: ():number => 2,
         }),
       ]}
     />
   );
 }
+
+export default Connections;

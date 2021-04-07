@@ -1,9 +1,8 @@
-import React from 'react'
+import {ReactElement} from 'react'
 import styled from 'styled-components'
-import {device} from '../theme/styleProvider'
 import 'leaflet/dist/leaflet.css';
 import {MapContainer, TileLayer} from 'react-leaflet';
-import mapData from '../config'
+import { mapData, device } from '../config'
 
 const MapWapper = styled(MapContainer)`
   display:none; 
@@ -13,7 +12,7 @@ const MapWapper = styled(MapContainer)`
   }
 `
 
-function Map():React.ReactElement {
+function Map():ReactElement {
   return (    
     <MapWapper center={[mapData.latitude,mapData.longitude]} zoom={mapData.zoom}>
       <TileLayer url={mapData.mapUrl} attribution={mapData.mapAtr} />

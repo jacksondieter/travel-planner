@@ -1,4 +1,6 @@
+import { FC } from 'react'
 import styled from 'styled-components'
+import {Props, NavBarObjs, ContainerObjs} from '../../global'
 
 const HeaderStl = styled.header`
   flex: 0 0 80px;
@@ -24,8 +26,8 @@ const NavBarStl = styled.nav`
   align-items: center;
   position: sticky;
   top:0px;
-  background: ${({ theme }) => theme.primary.body};
-  color: ${({ theme }) => theme.primary.text};
+  background: ${({ theme }):string => theme.primary.body};
+  color: ${({ theme }):string => theme.primary.text};
 `
 
 const BrandStl = styled.a`
@@ -37,14 +39,14 @@ const BrandStl = styled.a`
   margin-left:.5rem;
 `
 
-export const NavBar = ({children}) => (<NavBarStl>{children}</NavBarStl>)
-const Brand = ({children}) => (<BrandStl>{children}</BrandStl>)
+export const NavBar:NavBarObjs = ({children}) => (<NavBarStl>{children}</NavBarStl>)
+const Brand:FC<Props> = ({children}) => (<BrandStl>{children}</BrandStl>)
 NavBar.Brand = Brand
 
-export const Container = ({children}) => (<div className='app'>{children}</div>)
-const Header = ({children}) => (<HeaderStl>{children}</HeaderStl>)
-const Main = ({children}) => (<MainStl>{children}</MainStl>)
-const Footer = ({children}) => (<FooterStl>{children}</FooterStl>)
+export const Container:ContainerObjs = ({children}) => (<div className='app'>{children}</div>)
+const Header:FC<Props> = ({children}) => (<HeaderStl>{children}</HeaderStl>)
+const Main:FC<Props> = ({children}) => (<MainStl>{children}</MainStl>)
+const Footer:FC<Props> = ({children}) => (<FooterStl>{children}</FooterStl>)
 Container.Header = Header
 Container.Main = Main
 Container.Footer = Footer

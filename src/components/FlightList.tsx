@@ -1,13 +1,13 @@
-import React from 'react'
+import {ReactElement} from 'react'
 import styled from 'styled-components'
-import {device} from '../theme/styleProvider'
+import {device} from '../config'
 import arcs from '../data/arcs.json';
 
 const FlightContainer = styled.section`
   flex: 0 0 100%;
   display:flex;
-  background: ${({ theme }) => theme.body};
-  color: ${({ theme }) => theme.text};
+  background: ${({ theme }):string => theme.body};
+  color: ${({ theme }):string => theme.text};
   @media only screen and ${device.sm}{
     flex: 0 0 50%;
   }
@@ -18,8 +18,8 @@ const FlightGroup = styled.ul`
   width: 100%;
   padding: 0;
   > :nth-child(even) {
-    background: ${({ theme }) => theme.primary.body};
-    color: ${({ theme }) => theme.primary.text};
+    background: ${({ theme }):string => theme.primary.body};
+    color: ${({ theme }):string => theme.primary.text};
   }
 `
 const Row = styled.li`
@@ -33,7 +33,7 @@ const Col = styled.div`
 `
 
 
-function FlightList():React.ReactElement {
+function FlightList():ReactElement {
   return (
     <FlightContainer>
       <FlightGroup>

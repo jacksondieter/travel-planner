@@ -1,16 +1,13 @@
-import React from 'react';
 import {render} from 'react-dom';
-import './index.css';
+import './theme/index.css';
 import App from './App';
-import {StyleProvider} from './theme/styleProvider'
+import Providers from './Providers'
 // import reportWebVitals from './reportWebVitals';
 
 render(
-  <React.StrictMode>
-    <StyleProvider>
-      <App />
-    </StyleProvider>
-  </React.StrictMode>,
+  <Providers>
+    <App />
+  </Providers>,
   document.getElementById('root')
 );
 
