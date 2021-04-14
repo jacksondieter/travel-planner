@@ -1,7 +1,7 @@
 import { ReactNode, FC, Dispatch } from 'react';
 
 export type GlobalProps = {
-  theme:StyleThemes;
+  theme: StyleThemes;
 }
 
 export interface Style{
@@ -10,7 +10,7 @@ export interface Style{
 }
 
 export interface StyleThemes extends Style{
-  primary:Style;
+  primary: Style;
 }
 
 export type Themes = {
@@ -31,9 +31,9 @@ export type Props = {
 
 
 export interface viewportObj{
-  latitude:number;
-  longitude:number;
-  zoom:number;
+  latitude: number;
+  longitude: number;
+  zoom: number;
 }
 
 export type NavBarProps = { title: string }
@@ -55,20 +55,20 @@ export type ConnectionProps = {
 export type Index = 'light' | 'dark';
 
 export type MapStyle = {
-  [k in Index]:string
+  [k in Index]: string
 }
 
 export interface mapObj {
-  longitude:number;
-  latitude:number;
-  zoom:number;
-  mapUrl:string;
-  mapAtr:string;
-  mapUrl2:string;
-  mapAtr2:string;
-  mapStyle:MapStyle;
-  previewStyle:string;
-  accessToken:string;
+  longitude: number;
+  latitude: number;
+  zoom: number;
+  mapUrl: string;
+  mapAtr: string;
+  mapUrl2: string;
+  mapAtr2: string;
+  mapStyle: MapStyle;
+  previewStyle: string;
+  accessToken: string;
 }
 
 export interface Color {
@@ -91,24 +91,25 @@ export interface Device {
 }
 
 export interface State {
-  data:any[];
+  data: any[];
+  selectedData: number | null;
 }
 
 export interface Action {
-  type:string;
-  payload:any
+  type: string;
+  payload: any
 }
 
 export interface StoreContextProps {
-  state:State;
+  state: State;
   dispatch: Dispatch;
 }
 
 export interface FlightObj {
-  flyFrom:string;
-  flyTo:string;
-  source:number[];
-  target:number[];
+  flyFrom: string;
+  flyTo: string;
+  source: number[];
+  target: number[];
 }
 
 export interface FlightProps {

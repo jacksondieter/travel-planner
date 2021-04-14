@@ -4,11 +4,14 @@ import {State, Action, StoreContextProps, Props} from './global'
 export const actionTypes = {
   loadData:'load_data',
   cleanData:'clean_data',
+  selectData:'select_data',
+  deselectData:'deselect_data',
 }
 
 
 const initialState:State = {
-  data: []
+  data: [],
+  selectedData: null,
 };
 
 function reducer(state:State, action:Action):State {
@@ -22,6 +25,16 @@ function reducer(state:State, action:Action):State {
     return {
       ...state,
       data: [],
+    };
+  case actionTypes.selectData:
+    return {
+      ...state,
+      selectedData: action.payload,
+    };
+  case actionTypes.deselectData:
+    return {
+      ...state,
+      selectedData: null,
     };
   default:
     return state;
@@ -42,10 +55,23 @@ export const StoreProvider:FC<Props> = ({children}) => {
   )
 };
 
-export function useStore():StoreContextProps{
+export function useStore():any{
   const context = useContext(StoreContext);
   if(context === undefined){
     throw new Error('useStore must be within a StoreProvider')
   }
-  return context
+  const { state, dispatch } = context
+  const { data, selectedData } = state
+  const loadData = (data:any[]):void => dispatch({type:actionTypes.loadData,payload:data})
+  const cleanData = ():void => dispatch({type:actionTypes.cleanData})
+  const selectData = (data:number):void => dispatch({type:actionTypes.selectData,payload:data})
+  const deselectData = ():void => dispatch({type:actionTypes.deselectData})
+  return {
+    data,
+    selectedData,
+    loadData,
+    cleanData,
+    selectData,
+    deselectData
+  }
 } 

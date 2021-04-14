@@ -1,12 +1,13 @@
-import { FC, ReactElement } from 'react'
+import { ReactElement } from 'react'
 import styled from 'styled-components'
 import {device} from '../config'
-import { FlightProps } from '../global';
+import { FlightObj } from '../global';
 import { useStore } from '../store';
 
 const FlightContainer = styled.section`
   flex: 0 0 100%;
   display:flex;
+  overflow-y:scroll;
   background: ${({ theme }):string => theme.body};
   color: ${({ theme }):string => theme.text};
   @media only screen and ${device.sm}{
@@ -46,12 +47,15 @@ const Col = styled.div`
   flex: 1 0 auto;
 `
 
-const FlightGroup:FC<FlightProps> = (props) => {
-  const {flights} = props
+function FlightGroup():ReactElement {
+  const {data,selectData} = useStore()
+  const flights:FlightObj[] = data
+  const handleSelect = (index:number):void =>selectData(index)
+
   return(
     <Group>
-      {flights.map(({flyFrom,flyTo},ind)=>(
-        <Row key={ind}>
+      {flights.map(({flyFrom,flyTo},index)=>(
+        <Row key={index} onMouseEnter={():void=>handleSelect(index)}>
           <Col>{`From: ${flyFrom}`}</Col>
           <Col>{`To: ${flyTo}`}</Col>
         </Row>
@@ -62,11 +66,12 @@ const FlightGroup:FC<FlightProps> = (props) => {
 }
 
 function FlightList():ReactElement {
-  const {data} = useStore().state
-  const selectedData = data.slice(0,9)
+  const {deselectData} = useStore() 
+  const handleDeselect = ():void =>deselectData()
+  
   return (
-    <FlightContainer>
-      <FlightGroup flights={selectedData}/>
+    <FlightContainer  onMouseLeave={handleDeselect}>
+      <FlightGroup/>
     </FlightContainer>
   )
 }

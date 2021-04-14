@@ -58,6 +58,7 @@ export const themes:Themes = {
 
 
 const ThemeContext = createContext<ThemeContextProps>({theme:'light', toggleTheme:()=>{}});
+ThemeContext.displayName = 'ThemeContext'
 
 export const StyleProvider:FC<Props> = ({ children })=> {
   const initialTheme:Theme = 'light'

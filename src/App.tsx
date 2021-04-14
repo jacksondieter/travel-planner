@@ -5,12 +5,13 @@ import Map from './components/MapBoxContainer'
 import { Container } from './components/atom';
 import NavBarComponent from './components/NavBar';
 import arcs from './data/arcs.json';
-import { useStore, actionTypes } from './store';
+import { useStore } from './store';
 
 function App():ReactElement {
-  const {dispatch} = useStore()
+  const {loadData} = useStore()
   useEffect(() => {
-    dispatch({type:actionTypes.loadData,payload:arcs})
+    const payload = arcs.map((item,ind)=> ({...item,id:ind}))
+    loadData(payload)
   }, [arcs])
   return (
     <Container>

@@ -10,6 +10,7 @@ const HeaderStl = styled.header`
 const MainStl = styled.main`
   flex:1 0 auto;
   display:flex;
+  max-height: calc(100% - 100px);
 `
 
 const FooterStl = styled.footer`

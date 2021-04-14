@@ -27,7 +27,7 @@ export const url:string = process.env.PUBLIC_URL
 export const mapData:mapObj = {
   longitude:47.3836514,
   latitude:8.5482374,
-  zoom:3,
+  zoom:2,
   mapUrl:'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
   mapAtr:'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors.',
   mapUrl2:`https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=${accessToken}`,
