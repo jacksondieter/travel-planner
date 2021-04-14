@@ -17,9 +17,22 @@ const FlightGroup = styled.ul`
   heigth: 100%;
   width: 100%;
   padding: 0;
+  @keyframes color-rotate {
+    from{ filter: hue-rotate(0deg);}
+    to{filter: hue-rotate(360deg);}
+  }
+  &>li:hover{
+    cursor:auto;
+  }
   > :nth-child(even) {
     background: ${({ theme }):string => theme.primary.body};
     color: ${({ theme }):string => theme.primary.text};
+    clip-path: polygon(100% 100%, 98% 50%, 100% 0%, 0% 0%, 0% 100%);
+    &:hover{
+      animation: color-rotate 1s;
+      animation-iteration-count: infinite;
+      animation-direction:alternate;
+    }
   }
 `
 const Row = styled.li`
