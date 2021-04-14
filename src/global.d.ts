@@ -103,3 +103,14 @@ export interface StoreContextProps {
   state:State;
   dispatch: Dispatch;
 }
+
+export interface FlightObj {
+  flyFrom:string;
+  flyTo:string;
+  source:number[];
+  target:number[];
+}
+
+export interface FlightProps {
+  flights: FlightObj[]
+}

@@ -1,7 +1,8 @@
-import {ReactElement} from 'react'
+import { FC, ReactElement } from 'react'
 import styled from 'styled-components'
 import {device} from '../config'
-import arcs from '../data/arcs.json';
+import { FlightProps } from '../global';
+import { useStore } from '../store';
 
 const FlightContainer = styled.section`
   flex: 0 0 100%;
@@ -12,7 +13,7 @@ const FlightContainer = styled.section`
     flex: 0 0 50%;
   }
 `
-const FlightGroup = styled.ul`
+const Group = styled.ul`
   list-style: none;
   heigth: 100%;
   width: 100%;
@@ -45,18 +46,27 @@ const Col = styled.div`
   flex: 1 0 auto;
 `
 
+const FlightGroup:FC<FlightProps> = (props) => {
+  const {flights} = props
+  return(
+    <Group>
+      {flights.map(({flyFrom,flyTo},ind)=>(
+        <Row key={ind}>
+          <Col>{`From: ${flyFrom}`}</Col>
+          <Col>{`To: ${flyTo}`}</Col>
+        </Row>
+      ))}
+    </Group>
+    
+  )
+}
 
 function FlightList():ReactElement {
+  const {data} = useStore().state
+  const selectedData = data.slice(0,9)
   return (
     <FlightContainer>
-      <FlightGroup>
-        {arcs.slice(0,9).map(({flyFrom,flyTo},ind)=>(
-          <Row key={ind}>
-            <Col>{`From: ${flyFrom}`}</Col>
-            <Col>{`To: ${flyTo}`}</Col>
-          </Row>
-        ))}
-      </FlightGroup>
+      <FlightGroup flights={selectedData}/>
     </FlightContainer>
   )
 }

@@ -1,9 +1,11 @@
 import {createContext, useContext, useReducer, FC} from 'react';
 import {State, Action, StoreContextProps, Props} from './global'
 
-export const LOAD_DATA = 'LOAD_DATA'
-export const CLEAN_DATA = 'CLEAN_DATA'
-export const UPDATE_DATA = 'UPDATE_DATA'
+export const actionTypes = {
+  loadData:'load_data',
+  cleanData:'clean_data',
+}
+
 
 const initialState:State = {
   data: []
@@ -11,20 +13,15 @@ const initialState:State = {
 
 function reducer(state:State, action:Action):State {
   switch (action.type) {
-  case LOAD_DATA:
+  case actionTypes.loadData:
     return {
       ...state,
       data: action.payload,
     };
-  case CLEAN_DATA:
+  case actionTypes.cleanData:
     return {
       ...state,
       data: [],
-    };
-  case UPDATE_DATA:
-    return {
-      ...state,
-      data: action.payload,
     };
   default:
     return state;
