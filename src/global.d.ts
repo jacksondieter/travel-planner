@@ -1,4 +1,4 @@
-import { ReactNode, FC } from 'react';
+import { ReactNode, FC, Dispatch } from 'react';
 
 export type GlobalProps = {
   theme:StyleThemes;
@@ -88,4 +88,18 @@ export interface Device {
   xs: string;
   sm: string;
   lg: string;
+}
+
+export interface State {
+  data:any[];
+}
+
+export interface Action {
+  type:string;
+  payload:any
+}
+
+export interface StoreContextProps {
+  state:State;
+  dispatch: Dispatch;
 }
