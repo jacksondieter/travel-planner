@@ -12,7 +12,7 @@ const Connections:FC<ConnectionProps> = ({viewport}) => {
     getTargetPosition: (d:any):Position => d.target,
     getSourceColor: ():RGBAColor => [0, 255, 0, 120],
     getTargetColor: ():RGBAColor => [255, 0, 0, 120],
-    getWidth:(d:any):number => (selectedData === null)?3:(selectedData === d.id)?10:0,
+    getWidth:(d:any):number => (selectedData === null)?2:(selectedData === d.id)?10:0,
     updateTriggers:{
       getWidth:selectedData
     },
