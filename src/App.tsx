@@ -1,7 +1,8 @@
 import { useEffect, ReactElement } from 'react';
 import FlightList from './components/FlightList';
-// import Map from './components/MapContainer';
-import Map from './components/MapBoxContainer'
+// import Map from './components/MapLeafletContainer'
+import Map from './components/MapdeckContainer'
+// import Map from './components/MapBoxContainer'
 import { Container } from './components/atom';
 import NavBarComponent from './components/NavBar';
 import arcs from './data/arcs.json';

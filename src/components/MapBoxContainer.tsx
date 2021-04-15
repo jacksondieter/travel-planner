@@ -1,32 +1,18 @@
-import {ReactElement, useState} from 'react';
+import {ReactElement} from 'react';
 import ReactMapGL from 'react-map-gl';
-import styled from 'styled-components'
 import { useTheme } from '../theme/styleProvider'
 import 'mapbox-gl/dist/mapbox-gl.css';
-import {mapData, device} from '../config'
+import {mapData} from '../config'
 import Connections from './Connections'
-import {MapStyle, viewportObj} from '../global'
-
-const MapWapper = styled.section`
-  display:none; 
-  @media only screen and ${device.sm}{
-    display: flex;
-    flex: 0 0 50%;
-  }
-`
+import {MapStyle , viewportObj} from '../global'
+import { useViewPort, MapWrapper } from './MapWapper';
 
 function Map():ReactElement {
   const {theme} = useTheme()
-  const initialViewport: viewportObj = {
-    latitude: mapData.latitude,
-    longitude: mapData.longitude,
-    zoom: mapData.zoom,
-  }
-  const [viewport, setViewport] = useState(initialViewport);
-  // const url = window.location.origin;
+  const {viewport,setViewport} = useViewPort()
   
   return (
-    <MapWapper>
+    <MapWrapper>
       <ReactMapGL
         {...viewport}
         width="100%"
@@ -34,11 +20,12 @@ function Map():ReactElement {
         onViewportChange={(viewport:viewportObj):void => setViewport(viewport)}
         mapboxApiAccessToken={mapData.accessToken}
         mapStyle={mapData.mapStyle[theme as keyof MapStyle]}
-        // mapboxApiUrl={`${url}/api`}
+        // mapStyle={'https://basemaps.cartocdn.com/gl/positron-nolabels-gl-style/style.json'}
+        // mapStyle={BASEMAP.POSITRON_NOLABELS}
       >
         <Connections viewport={viewport}/>
       </ReactMapGL>
-    </MapWapper>
+    </MapWrapper>
   );
 }
 

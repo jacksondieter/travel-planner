@@ -1,4 +1,4 @@
-import { ReactNode, FC, Dispatch } from 'react';
+import { ReactNode, FC, Dispatch, SetStateAction } from 'react';
 
 export type GlobalProps = {
   theme: StyleThemes;
@@ -114,4 +114,9 @@ export interface FlightObj {
 
 export interface FlightProps {
   flights: FlightObj[]
+}
+
+export interface useViewPortProps {
+  viewport:viewportObj;
+  setViewport:Dispatch<SetStateAction<viewportObj>>;
 }
