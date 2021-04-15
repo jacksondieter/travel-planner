@@ -1,7 +1,7 @@
 {
-  "name": "vis-track-flights",
+  "name": "travel-planer",
   "version": "0.1.0",
-  "homepage": "https://jacksondieter.github.com/travel-planner",
+  "homepage": "http://jacksondieter.github.com/travel-planner",
   "private": true,
   "dependencies": {
     "deck.gl": "^8.4.11",
